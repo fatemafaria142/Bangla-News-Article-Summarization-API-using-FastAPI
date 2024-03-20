@@ -12,13 +12,20 @@ This project implements an API for summarizing Bangla news articles using FastAP
 
 ## Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/your-username/Bangla-News-Article-Summarization-API-using-FastAPI.git
-   
-2. Navigate to the project directory:
-  ``` cd Bangla-News-Article-Summarization-API-using-FastAPI
+2. **Navigate to the project directory:**
 
-4. Install the required dependencies:
-5. Run the FastAPI server:
+   ```bash
+   cd Bangla-News-Article-Summarization-API-using-FastAPI
+   
+3. **Install the required dependencies:**
+
+   ```bash
+   pip install -r requirements.txt
+4. **Run the FastAPI server:**
+
+   ```bash
+   uvicorn main:app --reload
