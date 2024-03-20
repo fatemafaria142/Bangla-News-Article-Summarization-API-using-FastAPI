@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangla News Article Summarization</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+</head>
+<body>
+    <h1>BanglaSynopsi</h1>
+
+<div class="container">
+    <div class="column">
+        <h3>Original Text</h3>
+        <form id="text-form">
+            <textarea id="text-input" name="text" rows="4" cols="50"></textarea><br>
+            <button type="submit">Summarize</button>
+        </form>
+    </div>
+
+    <div class="column">
+        <h3>Summarized Text</h3>
+        <div id="summarization-result"></div>
+    </div>
+</div>
+
+    <!-- JavaScript code to handle form submission and update the summarization result dynamically. -->
+    <script>
+       
+        const form = document.getElementById('text-form'); //Retrieves the form element by its id.
+        form.addEventListener('submit', async (event) => { //Adds an event listener to the form submission event.
+            event.preventDefault(); //Prevents the default form submission behavior.
+            const formData = new FormData(form); //Creates a new FormData object from the form data.
+            const text = formData.get('text'); //Retrieves the text input value from the form data.
+
+           //Sends a POST request to the '/summarization/' endpoint with the user's text data.
+            const response = await fetch('/summarization/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({text: text})
+            });
+
+            const data = await response.json(); //Parses the JSON response from the server.
+            document.getElementById('summarization-result').innerText = `${data.summarization}`; //Updates the content of the <div> element with the prediction result returned by the server.
+        });
+    </script>
+</body>
+</html>
